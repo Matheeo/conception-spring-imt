@@ -1,17 +1,17 @@
 -- joueur
 CREATE TABLE joueur
 (
-    id     BIGINT       NOT NULL,
+    id     BIGINT NOT NULL,
     nom    VARCHAR(255) NULL,
     prenom VARCHAR(255) NULL,
-    numero INT          NOT NULL,
+    numero INT    NOT NULL,
     CONSTRAINT pk_joueur PRIMARY KEY (id)
 );
 
 -- equipe
 CREATE TABLE equipe
 (
-    id  BIGINT       NOT NULL,
+    id  BIGINT NOT NULL,
     nom VARCHAR(255) NULL,
     CONSTRAINT pk_equipe PRIMARY KEY (id)
 );
@@ -52,9 +52,9 @@ ALTER TABLE round
 -- match
 CREATE TABLE `match`
 (
-    id         BIGINT   NOT NULL,
-    equipea_id BIGINT   NULL,
-    equipeb_id BIGINT   NULL,
+    id         BIGINT NOT NULL,
+    equipea_id BIGINT NULL,
+    equipeb_id BIGINT NULL,
     status     SMALLINT NULL,
     CONSTRAINT pk_match PRIMARY KEY (id)
 );
@@ -91,3 +91,16 @@ CREATE TABLE resultat
 
 ALTER TABLE resultat
     ADD CONSTRAINT FK_RESULTAT_ON_MATCH FOREIGN KEY (match_id) REFERENCES `match` (id);
+
+-- utilisateur
+
+CREATE TABLE utilisateur
+(
+    id                BIGINT NOT NULL,
+    nom               VARCHAR(255) NULL,
+    prenom            VARCHAR(255) NULL,
+    email             VARCHAR(255) NULL,
+    mot_de_passe        VARCHAR(255) NULL,
+    est_administrateur TINYINT(1) NOT NULL DEFAULT 0,
+    CONSTRAINT pk_utilisateur PRIMARY KEY (id)
+);
