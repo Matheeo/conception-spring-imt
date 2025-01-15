@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -29,5 +30,25 @@ public class ResultatService {
     public List<Resultat> getAll() {
         return StreamSupport.stream(resultatRepository.findAll().spliterator(), false)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Resultat> getByMatchId(long id) {
+        List<Resultat> allResults = getAll();
+        List<Resultat> resultsToDelete = new ArrayList<>();
+        for (Resultat resultat : allResults) {
+            if (resultat.getMatch().getId() == id) {
+                resultsToDelete.add(resultat);
+            }
+        }
+        return resultsToDelete;
+    }
+
+    public boolean deleteById(long id) {
+        if (resultatRepository.existsById(id)) {
+            resultatRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
