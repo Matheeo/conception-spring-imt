@@ -10,15 +10,14 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class JwtUtils {
 
     private static final Logger log = LoggerFactory.getLogger(JwtUtils.class);
-    private String KEY = "pedro";
+    private final String KEY = "pedro";
 
-    private Algorithm algorithm = Algorithm.HMAC256(KEY);
+    private final Algorithm algorithm = Algorithm.HMAC256(KEY);
 
     public String genereToken(String subject, String[] roles) {
         String token = "";

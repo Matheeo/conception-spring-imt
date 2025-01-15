@@ -19,7 +19,6 @@ Content-Type: application/json
 }
 
 > {%
-console.log(response.body)
 client.global.set("bearerToken", response.body.token);
 %}
 
@@ -30,3 +29,4 @@ Accept: application/json
 Authorization: Bearer {{bearerToken}}
 
 ###
+
