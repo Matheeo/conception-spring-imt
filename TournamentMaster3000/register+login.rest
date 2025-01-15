@@ -1,0 +1,32 @@
+POST http://localhost:8080/api/authentification/register
+Content-Type: application/json
+
+{
+  "nom": "vallee",
+  "prenom": "matheo",
+  "email": "matheovll35@gmail.com",
+  "mot_de_passe": "x1x2x3"
+}
+
+###
+
+POST http://localhost:8080/api/authentification/login
+Content-Type: application/json
+
+{
+  "email": "matheovll35@gmail.com",
+  "mot_de_passe": "x1x2x3"
+}
+
+> {%
+console.log(response.body)
+client.global.set("bearerToken", response.body.token);
+%}
+
+###
+
+GET http://localhost:8080/api/resultat
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+###

@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "`match`")
+@Table(name = "match")
 public class Match {
 
     @JsonIgnore
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToOne
