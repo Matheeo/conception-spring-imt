@@ -32,4 +32,13 @@ public class MatchController {
     public List<Match> getAll() {
         return matchService.getAll();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable long id) {
+        if (matchService.deleteById(id)) {
+            return ResponseEntity.ok("Match with ID " + id + " has been successfully deleted.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
