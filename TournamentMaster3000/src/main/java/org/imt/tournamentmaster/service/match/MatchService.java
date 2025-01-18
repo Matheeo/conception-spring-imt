@@ -35,6 +35,7 @@ public class MatchService {
                 .toList();
     }
 
+    @Transactional
     public boolean deleteById(long id) {
         if (matchRepository.existsById(id)) {
             List<Resultat> resultsToDelete = resultatService.getByMatchId(id);
