@@ -26,12 +26,10 @@ public class ReportController {
     }
 
     @PostMapping("/matches")
-    public ResponseEntity<String> importMatches(@RequestBody List<MatchDto> matches) {
-
-
-        String report = reportService.importMatches(matches);
+    public ResponseEntity<Report> importMatches(@RequestBody List<MatchDto> matches) {
+        Report report = reportService.importMatches(matches);
         if(report == null) {
-            return ResponseEntity.badRequest().body("Error while importing matches");
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(report);
     }

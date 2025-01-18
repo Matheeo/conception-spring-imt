@@ -47,7 +47,7 @@ public class ReportService {
     }
 
     @Transactional
-    public String importMatches(List<MatchDto> matches) {
+    public Report importMatches(List<MatchDto> matches) {
         Report report = new Report();
         int matchNumber = 0;
         List<MatchDto> matchesAlreadyCheck = new ArrayList<>();
@@ -131,15 +131,14 @@ public class ReportService {
             report.setSuccessfulMatchesDetails(successfulMatchesJson);
             report.setSkippedMatchesDetails(skippedMatchesJson);
             report.setFailedMatchesDetails(failedMatchesJson);
+
+            reportRepository.save(report);
         } catch (JsonProcessingException e) {
             return null;
         }
 
-        reportRepository.save(report);
-        try {
-            return objectMapper.writeValueAsString(report);
-        } catch (JsonProcessingException e) {
-            return null;
-        }
+
+        return report;
+
     }
 }
