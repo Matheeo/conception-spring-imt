@@ -8,6 +8,19 @@ CREATE TABLE joueur
     CONSTRAINT pk_joueur PRIMARY KEY (id)
 );
 
+--report
+CREATE TABLE report (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    import_date VARCHAR(255) NOT NULL,
+    number_of_events INT NOT NULL,
+    successful_matches INT NOT NULL,
+    skipped_matches INT NOT NULL,
+    failed_matches INT NOT NULL,
+    successful_matches_details TEXT,
+    skipped_matches_details TEXT,
+    failed_matches_details TEXT
+);
+
 -- equipe
 CREATE TABLE equipe
 (
