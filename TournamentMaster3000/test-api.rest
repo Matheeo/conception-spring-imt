@@ -1,0 +1,140 @@
+### Création du compte utilisateur
+POST http://localhost:8080/api/authentification/register
+Content-Type: application/json
+
+{
+  "nom": "vallee",
+  "prenom": "matheo",
+  "email": "matheovll35@gmail.comm",
+  "mot_de_passe": "x1x2x3"
+}
+
+### Connexion au compte utilisateur
+POST http://localhost:8080/api/authentification/login
+Content-Type: application/json
+
+{
+  "email": "matheovll35@gmail.comm",
+  "mot_de_passe": "x1x2x3"
+}
+
+> {%
+client.global.set("bearerToken", response.body.token);
+%}
+
+### Insertion des matchs
+POST http://localhost:8080/api/report/matches
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+[
+  {
+    "idEquipeA": 1,
+    "idEquipeB": 2,
+    "rounds": [
+      {
+        "scoreA": 3,
+        "scoreB": 4,
+        "roundNumber": 1
+      },
+      {
+        "scoreA": 4,
+        "scoreB": 8,
+        "roundNumber": 2
+      }
+    ],
+    "status": "TERMINE"
+  },
+  {
+    "idEquipeA": 3,
+    "idEquipeB": 4,
+    "rounds": [
+      {
+        "scoreA": 3,
+        "scoreB": 4,
+        "roundNumber": 1
+      },
+      {
+        "scoreA": 4,
+        "scoreB": 8,
+        "roundNumber": 2
+      }
+    ],
+    "status": "TERMINE"
+  },
+  {
+    "idEquipeA": 5,
+    "idEquipeB": 6,
+    "rounds": [
+      {
+        "scoreA": 3,
+        "scoreB": 4,
+        "roundNumber": 1
+      },
+      {
+        "scoreA": 4,
+        "scoreB": 8,
+        "roundNumber": 2
+      }
+    ],
+    "status": "TERMINE"
+  },
+  {
+    "idEquipeA": 1,
+    "idEquipeB": 1,
+    "rounds": [
+      {
+        "scoreA": 3,
+        "scoreB": 4,
+        "roundNumber": 1
+      },
+      {
+        "scoreA": 4,
+        "scoreB": 8,
+        "roundNumber": 2
+      }
+    ],
+    "status": "TERMINE"
+  },
+    {
+    "idEquipeA": 1,
+    "idEquipeB": 2,
+    "rounds": [
+      {
+        "scoreA": 7,
+        "scoreB": 1,
+        "roundNumber": 1
+      },
+      {
+        "scoreA": 1,
+        "scoreB": 8,
+        "roundNumber": 2
+      }
+    ],
+    "status": "TERMINE"
+  },
+      {
+    "idEquipeA": 1,
+    "idEquipeB": 2,
+    "rounds": [
+      {
+        "scoreA": 7,
+        "scoreB": 2,
+        "roundNumber": 1
+      }
+    ],
+    "status": "TERMINE"
+  }
+]
+
+### Récupération du rapport
+GET http://localhost:8080/api/report
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+### Suppresion d'un match
+DELETE http://localhost:8080/api/match/1
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+

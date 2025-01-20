@@ -40,4 +40,28 @@ public class Utilisateur {
     public boolean isEst_administrateur() {
         return est_administrateur;
     }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEst_administrateur(boolean est_administrateur) {
+        this.est_administrateur = est_administrateur;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

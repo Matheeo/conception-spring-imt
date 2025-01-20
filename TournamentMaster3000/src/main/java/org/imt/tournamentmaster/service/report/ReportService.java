@@ -84,7 +84,6 @@ public class ReportService {
 
             List<Round> rounds = match.getRounds().stream().map(roundDto -> {
                 Round round = new Round();
-                round.setId(Math.abs(UUID.randomUUID().getMostSignificantBits()));
                 round.setScoreA(roundDto.getScoreA());
                 round.setScoreB(roundDto.getScoreB());
                 round.setRoundNumber(roundDto.getRoundNumber());
@@ -94,7 +93,6 @@ public class ReportService {
             }).collect(Collectors.toList());
 
             Match newMatch = new Match();
-            newMatch.setId(Math.abs(UUID.randomUUID().getMostSignificantBits()));
             newMatch.setEquipeA(equipeA);
             newMatch.setEquipeB(equipeB);
             newMatch.setRounds(rounds);
