@@ -3,6 +3,7 @@ package org.imt.tournamentmaster.model.match;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.imt.tournamentmaster.model.equipe.Equipe;
+import org.imt.tournamentmaster.model.resultat.Resultat;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,13 +17,15 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @OneToOne()
+    @JoinColumn(name = "equipea_id")
     private Equipe equipeA;
 
-    @OneToOne
+    @OneToOne()
+    @JoinColumn(name = "equipeb_id")
     private Equipe equipeB;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Round> rounds; // Set est un type de collection, on va éviter les confusions et appeler ça un "round"
 
     private Status status;

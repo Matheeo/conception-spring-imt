@@ -17,7 +17,7 @@ public class Equipe {
 
     private String nom;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Joueur> joueurs;
 
     public Equipe() {

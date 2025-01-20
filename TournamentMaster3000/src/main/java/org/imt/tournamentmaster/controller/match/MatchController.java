@@ -1,8 +1,10 @@
 package org.imt.tournamentmaster.controller.match;
 
+import org.imt.tournamentmaster.dto.match.MatchDto;
 import org.imt.tournamentmaster.model.match.Match;
 import org.imt.tournamentmaster.service.match.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +41,16 @@ public class MatchController {
             return ResponseEntity.ok("Match with ID " + id + " has been successfully deleted.");
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addMatchs(@RequestBody List<MatchDto> matchDtos){
+        try {
+            matchService.saveMatchs(matchDtos);
+            return ResponseEntity.status(HttpStatus.CREATED).body("created");
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("error\n" + e);
         }
     }
 }

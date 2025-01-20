@@ -19,7 +19,6 @@ public class Resultat {
     @OneToOne
     private Match match;
 
-
     public Resultat() {
     }
 

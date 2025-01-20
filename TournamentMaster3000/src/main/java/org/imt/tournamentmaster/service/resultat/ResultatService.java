@@ -43,12 +43,4 @@ public class ResultatService {
         }
         return resultsToDelete;
     }
-
-    public boolean deleteById(long id) {
-        if (resultatRepository.existsById(id)) {
-            resultatRepository.deleteById(id);
-            return true;
-        }
-        return false;
-    }
 }

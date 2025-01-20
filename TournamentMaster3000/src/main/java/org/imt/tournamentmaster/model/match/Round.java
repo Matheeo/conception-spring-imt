@@ -15,10 +15,12 @@ public class Round {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "equipea_id", nullable = false)
     private Equipe equipeA;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "equipeb_id", nullable = false)
     private Equipe equipeB;
 
     private int scoreA;

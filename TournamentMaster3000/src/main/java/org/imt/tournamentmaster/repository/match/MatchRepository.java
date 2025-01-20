@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MatchRepository extends CrudRepository<Match, Long> {
 
+    Match getById(long id);
 }
